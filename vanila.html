@@ -12,23 +12,23 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     const root = document.getElementById("root");
-    let counter = 0;
-    function countUp(){
-        counter = counter + 1;
-        render();
-    } // Container는 처음에 한번만 로드 되므로 counter가 바뀔때마다 새롭게 render()해줘야 표시가 된다.
-    function render(){
-        ReactDOM.render(<Container/>,root);
+    
+    function App() {
+        const[counter , setCounter] = React.useState(0);
+        const onClick = () =>{
+            //setCounter(counter + 1);
+            setCounter( (current) => current + 1 );
+        };
+
+        return (
+            <div>
+                <h3>Total clicks : {counter}</h3>  
+                <button onClick={onClick}>Click me</button> 
+            </div>
+        )
     }
 
-    const Container = () => (
-        <div>
-            <h3>Total clicks : {counter}</h3>  
-            <button onClick={countUp}>Click me</button> 
-        </div>
-    );
-
-    render();
+    ReactDOM.render(<App/>,root);
 </script>
 
 </html>
